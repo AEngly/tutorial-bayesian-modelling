@@ -1,4 +1,6 @@
-# Dependencies for the tutorial
+# =========================
+# Tutorial dependencies
+# =========================
 asttokens==2.4.1
 colorama==0.4.6
 comm==0.2.2
@@ -28,10 +30,14 @@ traitlets==5.14.3
 typing_extensions==4.12.2
 wcwidth==0.2.13
 
-# Dependencies for Windows
+# =========================
+# Windows-specific dependencies
+# =========================
 pywin32==308; sys_platform == "win32"
 
+# =========================
 # Bayesian modeling dependencies
+# =========================
 numpyro==0.15.0
 jax==0.4.23
 jaxlib==0.4.23
@@ -39,3 +45,5 @@ arviz==0.18.0
 matplotlib==3.8.2
 pandas==2.1.4
 numpy==1.24.4
+seaborn==0.13.0
+scikit-learn==1.3.2
