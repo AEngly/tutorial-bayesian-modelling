@@ -14,8 +14,10 @@ warnings.filterwarnings("ignore")
 true_p = 0.70
 prior_alpha = 50
 prior_beta = 50
-max_samples = 4050
-step_size = 50
+max_samples = 3000
+step_size = 20
+max_samples += step_size 
+interval = 1/8  # [s]
 
 # --- Pre-generate all flips ---
 rng_key = random.PRNGKey(0)
@@ -55,7 +57,7 @@ p_prior_upper_P975 = beta.ppf(0.975, prior_alpha, prior_beta)
 def animate(frame):
 
     # Determine number of samples to use
-    n = 50 + frame * step_size
+    n = step_size + frame * step_size
     if n > max_samples:
         ani.event_source.stop()
         return []
@@ -99,12 +101,12 @@ def animate(frame):
 # --- Animate ---
 ani = animation.FuncAnimation(
     fig, animate, init_func=init_plot,
-    frames=int((max_samples - 50) / step_size),
-    interval=20,  # speed of animation
-    blit=False,
-    repeat=False
+    frames= (max_samples - step_size) // step_size,
+    interval=interval,  # speed of animation
+    blit=True,
+    repeat=True
 )
 
 # --- Save or show the animation ---
-ani.save("./Example 1 (Fair Coin)/fair_coin.gif", writer="pillow", fps=10)
+ani.save("./Example 1 (Fair Coin)/fair_coin.gif", writer="pillow", fps=1//interval)
 plt.show()
