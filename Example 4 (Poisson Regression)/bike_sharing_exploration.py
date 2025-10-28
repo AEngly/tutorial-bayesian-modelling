@@ -90,6 +90,7 @@ plt.xlabel('Total Bike Rentals [#]')
 plt.ylabel('Probability Density')
 plt.legend()
 plt.grid(alpha=0.3)
+plt.savefig("bike_rentals_histogram.png", dpi=300)
 plt.show()
 
 # --------- Figure 2: Scatter plots of continuous features vs target variable 'cnt' -----------
@@ -117,6 +118,7 @@ for j in range(i+1, len(axes)):
     fig.delaxes(axes[j])
 
 plt.tight_layout()
+plt.savefig("bike_rental_continuous_features.png", dpi=300)
 plt.show()
 
 # --------- Figure 3: Boxplots of categorical features vs target variable 'cnt' -----------
@@ -143,4 +145,5 @@ for j in range(i + 1, len(axes)):
     fig.delaxes(axes[j])
 
 plt.tight_layout()
+plt.savefig("bike_rental_discrete_features.png", dpi=300)
 plt.show()
