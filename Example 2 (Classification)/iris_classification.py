@@ -285,14 +285,14 @@ def bayesian_softmax_regression(X, y=None):
     # Beta: correlated across features within each class
     beta = numpyro.sample(
         "beta",
-        dist.MultivariateNormal(jnp.zeros(D), covariance_matrix=cov_prior).expand([C])
+        dist.MultivariateNormal(jnp.zeros(C), covariance_matrix=cov_prior).expand([D])
     )  # shape: C x D
 
     # Intercept can remain independent
     intercept = numpyro.sample("intercept", dist.Normal(jnp.zeros(C), 1.0))
 
     # Compute logits and probabilities
-    logits = jnp.dot(X, beta.T) + intercept
+    logits = jnp.dot(X, beta) + intercept
     probs = jax.nn.softmax(logits, axis=-1)
 
     # Observed labels
